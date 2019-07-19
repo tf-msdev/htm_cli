@@ -1,0 +1,189 @@
+, 
+      "post": {
+        "description": "", 
+        "parameters": [
+          {
+            "default": "application/json", 
+            "description": "Content type for post body", 
+            "in": "header", 
+            "name": "Content-Type", 
+            "required": true, 
+            "type": "string"
+          }, 
+          {
+            "description": "The unique project ID", 
+            "in": "path", 
+            "name": "project_id", 
+            "required": true, 
+            "type": "integer"
+          }, 
+          {
+            "description": "Annotation type", 
+            "in": "path", 
+            "name": "annotation_type", 
+            "required": true, 
+            "type": "string"
+          }, 
+          {
+            "description": "Application token registered with TM", 
+            "in": "header", 
+            "name": "Application-Token", 
+            "required": true, 
+            "type": "string"
+          }, 
+          {
+            "description": "JSON object for creating draft project", 
+            "in": "body", 
+            "name": "body", 
+            "required": true, 
+            "schema": {
+              "annotationType": {
+                "required": true, 
+                "type": "string"
+              }, 
+              "projectId": {
+                "required": true, 
+                "type": "integer"
+              }, 
+              "tasks": {
+                "items": {
+                  "schema": {
+                    "annotationMarkdown": {
+                      "type": "string"
+                    }, 
+                    "annotationSource": {
+                      "type": "string"
+                    }, 
+                    "properties": {
+                      "description": "JSON object with properties"
+                    }, 
+                    "taskId": {
+                      "required": true, 
+                      "type": "integer"
+                    }
+                  }
+                }, 
+                "required": true, 
+                "type": "array"
+              }
+            }
+          }
+        ], 
+        "produces": [
+          "application/json"
+        ], 
+        "responses": {
+          "200": {
+            "description": "Project updated"
+          }, 
+          "400": {
+            "description": "Client Error - Invalid Request"
+          }, 
+          "404": {
+            "description": "Project or task not found"
+          }, 
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }, 
+        "summary": "Store new task annotations for tasks of a project", 
+        "tags": [
+          "project-admin"
+        ]
+      }
+2654
+
+, 
+      "post": {
+        "description": "", 
+        "parameters": [
+          {
+            "default": "application/json", 
+            "description": "Content type for post body", 
+            "in": "header", 
+            "name": "Content-Type", 
+            "required": true, 
+            "type": "string"
+          }, 
+          {
+            "description": "The unique project ID", 
+            "in": "path", 
+            "name": "project_id", 
+            "required": true, 
+            "type": "integer"
+          }, 
+          {
+            "description": "Annotation type", 
+            "in": "path", 
+            "name": "annotation_type", 
+            "required": true, 
+            "type": "string"
+          }, 
+          {
+            "description": "Application token registered with TM", 
+            "in": "header", 
+            "name": "Application-Token", 
+            "required": true, 
+            "type": "string"
+          }, 
+          {
+            "description": "JSON object for creating draft project", 
+            "in": "body", 
+            "name": "body", 
+            "required": true, 
+            "schema": {
+              "annotationType": {
+                "required": true, 
+                "type": "string"
+              }, 
+              "projectId": {
+                "required": true, 
+                "type": "integer"
+              }, 
+              "tasks": {
+                "items": {
+                  "schema": {
+                    "annotationMarkdown": {
+                      "type": "string"
+                    }, 
+                    "annotationSource": {
+                      "type": "string"
+                    }, 
+                    "properties": {
+                      "description": "JSON object with properties"
+                    }, 
+                    "taskId": {
+                      "required": true, 
+                      "type": "integer"
+                    }
+                  }
+                }, 
+                "required": true, 
+                "type": "array"
+              }
+            }
+          }
+        ], 
+        "produces": [
+          "application/json"
+        ], 
+        "responses": {
+          "200": {
+            "description": "Project updated"
+          }, 
+          "400": {
+            "description": "Client Error - Invalid Request"
+          }, 
+          "404": {
+            "description": "Project or task not found"
+          }, 
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }, 
+        "summary": "Store new task annotations for tasks of a project", 
+        "tags": [
+          "project-admin"
+        ]
+      }
+2694

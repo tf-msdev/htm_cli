@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head data-locale="en" data-preferred-editor="id">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+  <script src="/assets/html5shiv-c43200bf995fc643e0df32a2333ec339315792a0a35562a5359d8937c2e8751c.js"></script>
+  <script src="/assets/es5-3077d25fb1ef57fc307256b78eb6ef80100f399fc17b99e39acbf5be3b103514.js"></script>
+  <script src="/assets/es6-e3e37f2edbcedffdbc431c0cb5dd2846834f52a4d6129cc73d10b85e900fae22.js"></script>
+  <script src="/assets/application-27e1dc45be277b504c26ef3c515318baf5fd254649901c46ac3e04ddb2a90ec1.js"></script>
+  <script src="/assets/i18n/en-964ffdb8547bbc65aea44c568e9c8f7469b874da9333bda5ec0acf75a174c6b3.js"></script>
+  <link rel="stylesheet" media="screen" href="/assets/screen-ltr-56c86771fc241440e36145999d4069209b6ea9ce7e508d48090ae525920df422.css" />
+  <link rel="stylesheet" media="print" href="/assets/print-ltr-f0e982d0ba074e914962563e26dfc48b3d2d9a05e5442932889cec8769cd2eaf.css" />
+  <link rel="stylesheet" media="screen, print" href="/assets/leaflet-all-9df492d56eca990c8a4b46876e246ded7812f513881d7b7edecf01f99c61ba94.css" />
+
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-57x57-cfd080abd483a2c8325da06a5a4687ffed69173bb7b7e62d4409ed61674677bd.png" sizes="57x57" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-60x60-d000d708a51e48a61fdeb79701ab6e003b9e6096d5a26e446bf85e2cdb9fb138.png" sizes="60x60" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-72x72-2146604316355b588fa0e9c53c5bda0b14eafddd0b939686356ac0096880e35d.png" sizes="72x72" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-76x76-61f3dde6d2f60f2c5fb784df4b5014c9fcad1aa0c01766f33e198e9e555d39da.png" sizes="76x76" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-114x114-53f58fc4c9ff46247f0f3ea9def90162f244631c936394860c3be0bd6645a35c.png" sizes="114x114" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-120x120-d4eab8b7f42848d8a68045ef10b959b2c279d9ba2b3198520d5fb880de3d938c.png" sizes="120x120" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-144x144-3ec9ac978fb7bb554bd79d1ca05c3689e3deb12e3d2b5b5e73962cd731b1499c.png" sizes="144x144" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-152x152-385ae90aa77bd2efc9dfa42a91cabe973122044f554e8e19c94039be6aff9b26.png" sizes="152x152" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-180x180-8575b865b66da9ea7452adf3c20f9eb715ee4290254a22987c483c3826b93205.png" sizes="180x180" />
+  <link rel="icon" type="image/png" href="/assets/favicon-32x32-76de1055b40f75be27792fdfc07df23963926c47648cc66d0189c87827ebeea2.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/assets/favicon-194x194-e43358b5598e0a9b73eb2da5c3cc99a53336d6c3d3f761d52c75e3f25dd760dd.png" sizes="194x194" />
+  <link rel="icon" type="image/png" href="/assets/favicon-96x96-3f49f5b5ebbc6b674b859858266939edc95b2d7f97979470702f2d3fa9082819.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="/assets/android-chrome-192x192-edb313ad64ec75f942ce3416e9d18c2021f682275f4d992696caa2695e882fbd.png" sizes="192x192" />
+  <link rel="icon" type="image/png" href="/assets/favicon-16x16-1772a97682f5b3f45c3f98c18f98634808b637a5595026962709fb54af9b9044.png" sizes="16x16" />
+  <link rel="mask-icon" href="/assets/tab-icon-bc0cbb520d6583761367b3e627119898fe5304b85fff367d6be475fea9cdbc52.svg" color="#7ebc6f" />
+  <link rel="manifest" href="/assets/manifest-63908e296e51e1608ae31ec3c7c39eb12b544bd1459921a2e42298604de3ff45.json" />
+  <meta name="msapplication-config" content="/assets/browserconfig-807d291ce027322cda4de0189eb2bbc65919dc2de8df7d4d389b6da4aa9f899c.xml" />
+  <meta name="msapplication-TileColor" content="#00a300" />
+  <meta name="msapplication-TileImage" content="/assets/mstile-144x144-ddbe37d9292379699901d3522682c6b24e0223849b5ef0730d1da3b924463376.png" />
+  <meta name="theme-color" content="#ffffff" />
+  <link href="https://www.openstreetmap.org/login" rel="canonical" />
+  <link rel="publisher" href="https://plus.google.com/111953119785824514010" />
+  <link rel="search" type="application/opensearchdescription+xml" title="OpenStreetMap Search" href="/assets/osm-0aa4c48d8b5195b33e6e63fe57ac81e9c3d19fcf98e0f09a3f67a83456b9a6b4.xml" />
+  <meta name="description" content="OpenStreetMap is the free wiki world map." />
+  <meta property="og:site_name" content="OpenStreetMap" /><meta property="og:title" content="OpenStreetMap" /><meta property="og:type" content="website" /><meta property="og:image" content="https://www.openstreetmap.org/assets/osm_logo_256-cde84d7490f0863c7a0b0d0a420834ebd467c1214318167d0f9a39f25a44d6bd.png" /><meta property="og:image:secure_url" content="https://www.openstreetmap.org/assets/osm_logo_256-cde84d7490f0863c7a0b0d0a420834ebd467c1214318167d0f9a39f25a44d6bd.png" /><meta property="og:url" content="https://www.openstreetmap.org/login" /><meta property="og:description" content="OpenStreetMap is a map of the world, created by people like you and free to use under an open license." />
+    <script src="/assets/login-8a430baafff9ac7dea75718599c245bd3bc41f25d78f6d1a0073c0159bcf509c.js"></script>
+
+
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="VEo4YjWhneJeqEJVKmOSMUp89pFyk0/08Dgc800Rkmw0WPCLnHsS+BARctLsl/DngA/m0J9TmK/vcSwzChY7qQ==" />
+
+  <title>OpenStreetMap</title>
+</head>
+  <body class="users users-login">
+    <header class="closed">
+  <h1>
+    <a href="/" class="geolink">
+      <picture>
+        <source srcset="/assets/osm_logo-0e91a8acd0a92c1bf14204322322e57c65c2a7e318fec6907252fed929b7d6d3.svg" type="image/svg+xml"></source>
+        <img srcset="/assets/osm_logo-0e91a8acd0a92c1bf14204322322e57c65c2a7e318fec6907252fed929b7d6d3.svg" alt="OpenStreetMap logo" class="logo" src="/assets/osm_logo-ce691ac3325e0ebe119ff9087858192cc7677e50d7b77655cafc1f208161ad79.png" />
+      </picture>
+      OpenStreetMap
+    </a>
+  </h1>
+  <a href="#" id="menu-icon"></a>
+  <nav class='primary'>
+
+    <ul>
+      <li id="edit_tab" class="dropdown ">
+        <a class="tab geolink editlink" id="editanchor" data-editor="id" href="/edit">Edit</a>
+        <a class='dropdown-toggle' data-toggle='dropdown' href='#'><b class="caret"></b></a>
+        <ul class='dropdown-menu'>
+            <li>
+              <a data-editor="id" class="geolink editlink" href="/edit?editor=id">Edit with iD (in-browser editor)</a>
+            </li>
+            <li>
+              <a data-editor="potlatch2" class="geolink editlink" href="/edit?editor=potlatch2">Edit with Potlatch 2 (in-browser editor)</a>
+            </li>
+            <li>
+              <a data-editor="remote" class="geolink editlink" href="/edit?editor=remote">Edit with Remote Control (JOSM or Merkaartor)</a>
+            </li>
+        </ul>
+      </li>
+      <li id="history_tab" class="">
+        <a class="tab geolink" href="/history">History</a>
+      </li>
+      <li id="export_tab" class="">
+        <a class="tab geolink" href="/export">Export</a>
+      </li>
+    </ul>
+  </nav>
+  <nav class='secondary'>
+    <ul>
+      <li class="compact-hide "><a href="/traces">GPS Traces</a></li>
+      <li class="compact-hide "><a href="/diary">User Diaries</a></li>
+      <li class="compact-hide "><a href="/copyright">Copyright</a></li>
+      <li class="compact-hide "><a href="/help">Help</a></li>
+      <li class="compact-hide "><a href="/about">About</a></li>
+      <li id="compact-secondary-nav" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">More <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li class=""><a href="/traces">GPS Traces</a></li>
+          <li class=""><a href="/diary">User Diaries</a></li>
+          <li class=""><a href="/copyright">Copyright</a></li>
+          <li class=""><a href="/help">Help</a></li>
+          <li class=""><a href="/about">About</a></li>
+        </ul>
+      </li>
+    </ul>
+      <ul class="user-menu clearfix">
+        <li><a class="geolink" href="/login?referer=%2Flogin%3Fcookie_test%3Dtrue%26referer%3D%252Foauth%252Fauthorize%253Foauth_token%253DwnLArhPpKeUiQE4xETLeqE5Rnk2nd1HxMRWVNs6f">Log In</a></li>       
+        <li><a href="/user/new">Sign Up</a></li>
+      </ul>
+  </nav>
+</header>
+
+    <div id="content" class="">
+
+  <div class="flash warning">
+    <picture>
+      <source srcset="/assets/notice-8bd2c09960d71fcf7704e871aa7f3eed43f71e60952dc00d9aff16bd2f27f050.svg" type="image/svg+xml"></source>
+      <img srcset="/assets/notice-8bd2c09960d71fcf7704e871aa7f3eed43f71e60952dc00d9aff16bd2f27f050.svg" class="small_icon" border="0" src="/assets/notice-1111b29eeec02b20f345029eeb3fd90171599f4953b27ece35b2af9628ef439d.png" />
+    </picture>
+    <div class="message">You appear to have cookies disabled - please enable cookies in your browser before continuing.</div>
+  </div>
+
+
+      <div class="content-heading">
+        <div class="content-inner">
+            <h1>Login</h1>
+
+        </div>
+      </div>
+    <div class="content-body">
+      <div class="content-inner">
+
+
+<div id="login_login">
+  <form id="login_form" action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="eh/fQgZdLPEMvcqhQ9z30tetNwF+2CCBoiCHFZOa9kwJAdPeGC0HP+iKWaWTaIS+b2MguoHFvbPq2ddbxuE5qg==" />
+    <input type="hidden" name="referer" id="referer" value="/oauth/authorize?oauth_token=wnLArhPpKeUiQE4xETLeqE5Rnk2nd1HxMRWVNs6f" />
+
+    <p class='deemphasize'>Don&#39;t have an account? <a href="/user/new?referer=%2Foauth%2Fauthorize%3Foauth_token%3DwnLArhPpKeUiQE4xETLeqE5Rnk2nd1HxMRWVNs6f">Register now</a></p>
+
+    <div id="loginForm" class="standard-form">
+
+      <fieldset>
+        <div class="form-row">
+          <label for="username" class="standard-label">
+            Email Address or Username:
+          </label>
+          <input type="text" name="username" id="username" tabindex="1" />
+        </div>
+        <div class="form-row">
+          <label for="password" class="standard-label">
+            Password:
+          </label>
+          <input type="password" name="password" id="password" value="" tabindex="2" />
+        </div>
+        <span class="form-help deemphasize">
+          <a href="/user/forgot-password">Lost your password?</a>
+        </span>
+      </fieldset>
+
+      <fieldset>
+        <input type="checkbox" name="remember_me" id="remember_me" value="yes" tabindex="3" />
+        <label for="remember_me" class="standard-label">
+          Remember me
+        </label>
+        <input type="submit" name="commit" value="Login" tabindex="4" data-disable-with="Login" />
+      </fieldset>
+
+    </div>
+
+</form>
+  <form id="openid_login_form" action="/auth/openid" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="V+6SOgb4fLTtt+HNbWAyR8IFzhoknnr20hn3tS8xX49pmgNpbqiASZCNWcXSoCLQeIQJNpaIbIlXq86c4eX1oQ==" />
+    <div id="loginForm" class="standard-form">
+
+      <fieldset class='form-divider'>
+
+        <p class='standard-label'>Alternatively, use a third party to login:</p>
+
+        <ul class='clearfix' id="login_auth_buttons">
+          <li><a id="openid_open_url" title="Login with OpenID" href="#"><img alt="Login with OpenID" src="/assets/openid-c84045680d4fb347deb23dccb6d76c0086e869e8ee04dba5017db2ee704bdb0a.png" /></a></li>
+          <li><a class="auth_button" title="Login with Google" href="/auth/google"><img alt="Login with a Google OpenID" src="/assets/google-0b2b1bc03788c83cd3f8ecfc804e16cb1a209769cccbf2f20942387e2809394d.png" /></a></li>
+          <li><a class="auth_button" title="Login with Facebook" href="/auth/facebook"><img alt="Login with a Facebook Account" src="/assets/facebook-d75f1c068401795ab424ccf13175d14ff2508c8076f8cb4a3a5dd2eef62cdff6.png" /></a></li>
+          <li><a class="auth_button" title="Login with Windows Live" href="/auth/windowslive"><img alt="Login with a Windows Live Account" src="/assets/windowslive-cebe72bcc60ec4932de32ad45fef2ffb66752d5b7d724da7d0d9863e896ff8e8.png" /></a></li>
+          <li><a class="auth_button" title="Login with GitHub" href="/auth/github"><img alt="Login with a GitHub Account" src="/assets/github-ab054cc399f9b5f1e7f72139c5302d9645339f695260a95e9f85809c5386a264.png" /></a></li>
+          <li><a class="auth_button" title="Login with Wikipedia" href="/auth/wikipedia"><img alt="Login with a Wikipedia Account" src="/assets/wikipedia-0b455869479150a2c0ebcfa3ecf149fddd5195372ba70a8097da00bf330b12c7.png" /></a></li>
+          <li><a class="auth_button" title="Login with Yahoo" href="/auth/openid?openid_url=yahoo.com"><img alt="Login with a Yahoo OpenID" src="/assets/yahoo-4ad722e10be8645698cb903486040967650d726c6472ace4b203a799b1aa9771.png" /></a></li>
+          <li><a class="auth_button" title="Login with Wordpress" href="/auth/openid?openid_url=wordpress.com"><img alt="Login with a Wordpress OpenID" src="/assets/wordpress-786b98a6cbb1796837f0e21cff45a43aaa17c4d8285edc08825a7f21527f3dd6.png" /></a></li>
+          <li><a class="auth_button" title="Login with AOL" href="/auth/openid?openid_url=aol.com"><img alt="Login with an AOL OpenID" src="/assets/aol-1cbc6b5ba6dba83fb205ada738220adca0d2cbff0fac23f0f2ff92a173fc53fb.png" /></a></li>
+        </ul>
+
+        <div id='login_openid_url' class='form-row'>
+          <label for='openid_url' class="standard-label"><img alt="Log in with an OpenID" class="openid_logo" src="/assets/openid_small-1c6a7d1b4f77050fcbf8e26cb50613283d1a82fe274f33eb86035f326d0b33e7.png" /> OpenID:</label>
+          <input type="hidden" name="openid_referer" id="openid_referer" value="/oauth/authorize?oauth_token=wnLArhPpKeUiQE4xETLeqE5Rnk2nd1HxMRWVNs6f" />
+          <input type="text" name="openid_url" id="openid_url" value="" tabindex="3" class="openid_url" />
+          <span class="minorNote">(<a href="https://wiki.openstreetmap.org/wiki/OpenID" target="_new">what is this?</a>)</span>
+        </div>
+
+        <input type="submit" name="commit" value="Login" tabindex="6" id="login_openid_submit" data-disable-with="Login" />
+
+      </fieldset>
+
+    </div>
+
+</form>
+</div>
+
+      </div>
+    </div>
+</div>
+
+    <noscript><p><img src="https://piwik.openstreetmap.org/piwik.php?idsite=1" class="piwik" alt="" /></p></noscript>
+  </body>
+</html>
+

@@ -1,0 +1,146 @@
+<!DOCTYPE html>\n
+<html lang="en" ng-app="taskingManager">
+   \n
+   <head>
+      \n    
+      <meta charset="UTF-8">
+      \n    
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      \n    
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      \n    
+      <title>{{ title | translate }} - HOT Tasking Manager</title>
+      \n    
+      <base href="/">
+      \n\n    <!-- for Google -->\n    
+      <meta name="description" content="HOT Tasking Manager is a mapping tool designed and built for the Humanitarian OSM Team collaborative mapping.">
+      \n    
+      <meta name="keywords" content="OpenStreetMap, Tasking Manager, OSM">
+      \n    
+      <meta name="author" content="Humanitarian OpenStreetMap Team">
+      \n    
+      <meta name="application-name" content="OSM Tasking Manager" />
+      \n\n\t<!-- for Facebook -->\n\t
+      <meta property="og:title" content="HOT Tasking Manager" />
+      \n\t
+      <meta property="og:site_name" content="HOT Tasking Manager" />
+      \n\t
+      <meta property="og:type" content="website" />
+      \n\t
+      <meta property="og:url" content="tasks.hotosm.org" />
+      \n\t
+      <meta property="og:description" content="HOT Tasking Manager is a mapping tool designed and built for the Humanitarian OSM Team collaborative mapping." />
+      \n\n    <!-- for Twitter -->\n\t
+      <meta name="twitter:card" content="summary" />
+      \n\t
+      <meta name="twitter:title" content="HOT Tasking Manager" />
+      \n\t
+      <meta name="twitter:description" content="HOT Tasking Manager is a mapping tool designed and built for the Humanitarian OSM Team collaborative mapping." />
+      \n\n    
+      <link href="./assets/img/hot-favicon.ico" rel="icon">
+      \n\n    
+      <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700" rel="stylesheet"/>
+      \n\n    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/4.0.1/ol.css">
+      \n\n    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/openlayers.geocoder/latest/ol3-geocoder.min.css">
+      \n\n    
+      <link 
+         rel="stylesheet" href="https://cdn.jsdelivr.net/openlayers.layerswitcher/1.1.0/ol3-layerswitcher.css">
+      \n\n    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-tags-input/3.1.2/ng-tags-input.min.css">
+      \n\n    
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      \n\n    
+      <link rel="stylesheet" href="assets/styles/css/taskingmanager.min.css">
+      \n\n
+   </head>
+   \n
+   <body>
+      \n\n<!-- header -->\n
+      <header class="page__header page__header__fixed" role="banner">
+         \n    
+         <div class="inner">
+            \n        
+            <div class="page__headline">
+               \n            
+               <h1 class="page__title">\n                <a href="/" title="{{ \'Visit homepage\' | translate }}">\n                    <img src="./assets/img/hot-tm-logo.svg" alt="HOT logo" height="37">\n                </a>\n      
+               </h1>
+               \n        
+            </div>
+            \n        
+            <nav class="page__prime-nav" role="navigation">
+               \n            
+               <h2 class="toggle-menu">\n                <a title="{{ \'Show/hide menu\' | translate }}" ng-modal="showMenu" ng-click="showMenu = !showMenu"></a>\n            </h2>
+               \n            
+               <div class="menu-wrapper" ng-class="showMenu ? \'menu-wrapper menu-wrapper--open\' : \'menu-wrapper\'" ng-cloak>
+                  \n
+                  <ul class="global-menu" id="global-menu">
+                     \n                    
+                     <li>\n                        <a href="/contribute" title="{{ \'Start mapping\' | translate }}" class="global-menu-item">\n
+                        <span>{{ \'Contribute\' | translate }}</span>\n                        </a>\n                    
+                     </li>
+                     \n                    
+                     <li>\n                        <a href="/learn" title="{{ \'Visit learn\' | translate }}" class="global-menu-item">\n                            <span>{{ \'Learn\' | translate }}</span>\n                        </a>\n                    </li>
+                     \n                    
+                     <li>\n 
+                        <a href="/about" title="{{ \'Visit about\' | translate }}" class="global-menu-item">\n                            <span>{{ \'About\' | translate }}</span>\n
+                        </a>\n                    
+                     </li>
+                     \n                
+                  </ul>
+                  \n                
+                  <ul class="global-menu menu-secondary-wrapper">
+                     \n                    
+                     <li class="global-menu-item">
+                        \n                        
+                        <language-switch class="language-dropown-wrapper"></language-switch>
+                        \n                    
+                     </li>
+                     \n                    
+                     <li class="global-menu-divider"></li>
+                     \n                    
+                     <li class="global-menu-item">
+                        \n   
+                        <mapper-level-indicator></mapper-level-indicator>
+                        \n                    
+                     </li>
+                     \n                    
+                     <li class="global-menu-item">
+                        \n                        
+                        <account-nav></account-nav>
+                        \n                    
+                     </li>
+                     \n                
+                  </ul>
+                  \n            
+               </div>
+               \n        
+            </nav>
+            \n    
+         </div>
+         \n
+      </header>
+      \n<!--/ header -->\n\n<!-- Main content and injected views -->\n
+      <div class="page__body" id="tm-container" ng-view autoscroll>\n</div>
+      \n\n<!-- mobile message -->\n
+      <div class="mob-disclaimer" ng-show="!hideMobileMessage">
+         \n    
+         <p class="centered">\n        <i class="modal__button-dismiss pull-right pointer" ng-click="hideMobileMessage = true"></i>\n        {{ \'In order to make full use of the many features in the Tasking Manager, please use a desktop or laptop computer rather than a mobile device. 
+            If you would like to contribute on a mobile device, please use MapSwipe instead.\' | translate }}\n    
+         </p>
+         \n    <a href="https://mapswipe.org" class="button button--outline--white">{{ \'Go to MapSwipe\' | translate }}</a>\n
+      </div>
+      \n<!--/ mobile message -->\n\n
+      <footer class="page__footer section">
+         \n    
+         <div class=\'inner\'>\n        <span>{{ \'Made by the\' | translate }} <a href="https://www.hotosm.org/">HOTOSM</a> {{ \'Community\' | translate }}. <a href="/about">{{ \'Get in touch\' | translate }}</a>.</span>\n        <span class="right">{{ \'Give feedback on\' | translate }} <a href="https://github.com/hotosm/tasking-manager" target="_blank" rel="noopener">{{ \'GitHub\' | translate }}</a>. {{ \'Learn more about\' | translate }} <a href="https://www.openstreetmap.org/about">OpenStreetMap</a>.</span>\n    </div>
+         \n
+      </footer>
+      \n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular.min.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.3/angular-sanitize.min.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/4.0.1/ol.js"></script>\n\n<script src="https://cdn.jsdelivr.net/openlayers.geocoder/latest/ol3-geocoder.js"></script>\n\n<script src="https://cdn.jsdelivr.net/openlayers.layerswitcher/1.1.0/ol3-layerswitcher.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular-route.min.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.min.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/3.0.14/turf.min.js"></script>\n\n<script src="https://cdn.rawgit.com/calvinmetcalf/shapefile-js/gh-pages/dist/shp.min.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.1/showdown.min.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-showdown/1.1.0/ng-showdown.min.js"></script>\n\n<script src="https://cdn.jsdelivr.net/npm/@mapbox/geo-viewport@0.4.0/geo-viewport.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/1.0.1/angular-moment.min.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-chart.js/1.1.1/angular-chart.min.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-tags-input/3.1.2/ng-tags-input.min.js"></script>\n\n<script src="https://cdn.jsdelivr.net/angular.ment-io/0.9.24/mentio.min.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.15.1/angular-translate.min.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.15.1/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>\n\n<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-socialshare/2.3.8/angular-socialshare.min.js"></script>\n\n<script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>\n\n<script src="https://cdn.jsdelivr.net/npm/osmtogeojson@2.2.12/osmtogeojson.js"></script>\n\n<script src="app/taskingmanager.min.js"></script>\n\n<!-- Matomo -->\n
+      <div id="optout-form"></div>
+      \n<script type="application/javascript">var site_id="9"</script>\n<script type="application/javascript" src="https://cdn.hotosm.org/tracking-v2.js"></script>\n <!-- End Matomo Code -->\n\n
+   </body>
+   \n
+</html>
+\n

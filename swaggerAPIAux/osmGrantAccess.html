@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head data-locale="en-US" data-preferred-editor="id" data-user="10127352">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+  <script src="/assets/html5shiv-c43200bf995fc643e0df32a2333ec339315792a0a35562a5359d8937c2e8751c.js"></script>
+  <script src="/assets/es5-3077d25fb1ef57fc307256b78eb6ef80100f399fc17b99e39acbf5be3b103514.js"></script>
+  <script src="/assets/es6-e3e37f2edbcedffdbc431c0cb5dd2846834f52a4d6129cc73d10b85e900fae22.js"></script>
+  <script src="/assets/application-27e1dc45be277b504c26ef3c515318baf5fd254649901c46ac3e04ddb2a90ec1.js"></script>
+  <script src="/assets/i18n/en-US-efc8f7c996cd576469363b4cfdecb78284e2325d6a97f3d9081ba111d2ff4f4b.js"></script>
+  <link rel="stylesheet" media="screen" href="/assets/screen-ltr-56c86771fc241440e36145999d4069209b6ea9ce7e508d48090ae525920df422.css" />
+  <link rel="stylesheet" media="print" href="/assets/print-ltr-f0e982d0ba074e914962563e26dfc48b3d2d9a05e5442932889cec8769cd2eaf.css" />  
+  <link rel="stylesheet" media="screen, print" href="/assets/leaflet-all-9df492d56eca990c8a4b46876e246ded7812f513881d7b7edecf01f99c61ba94.css" />
+
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-57x57-cfd080abd483a2c8325da06a5a4687ffed69173bb7b7e62d4409ed61674677bd.png" sizes="57x57" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-60x60-d000d708a51e48a61fdeb79701ab6e003b9e6096d5a26e446bf85e2cdb9fb138.png" sizes="60x60" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-72x72-2146604316355b588fa0e9c53c5bda0b14eafddd0b939686356ac0096880e35d.png" sizes="72x72" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-76x76-61f3dde6d2f60f2c5fb784df4b5014c9fcad1aa0c01766f33e198e9e555d39da.png" sizes="76x76" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-114x114-53f58fc4c9ff46247f0f3ea9def90162f244631c936394860c3be0bd6645a35c.png" sizes="114x114" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-120x120-d4eab8b7f42848d8a68045ef10b959b2c279d9ba2b3198520d5fb880de3d938c.png" sizes="120x120" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-144x144-3ec9ac978fb7bb554bd79d1ca05c3689e3deb12e3d2b5b5e73962cd731b1499c.png" sizes="144x144" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-152x152-385ae90aa77bd2efc9dfa42a91cabe973122044f554e8e19c94039be6aff9b26.png" sizes="152x152" />
+  <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-180x180-8575b865b66da9ea7452adf3c20f9eb715ee4290254a22987c483c3826b93205.png" sizes="180x180" />
+  <link rel="icon" type="image/png" href="/assets/favicon-32x32-76de1055b40f75be27792fdfc07df23963926c47648cc66d0189c87827ebeea2.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/assets/favicon-194x194-e43358b5598e0a9b73eb2da5c3cc99a53336d6c3d3f761d52c75e3f25dd760dd.png" sizes="194x194" />
+  <link rel="icon" type="image/png" href="/assets/favicon-96x96-3f49f5b5ebbc6b674b859858266939edc95b2d7f97979470702f2d3fa9082819.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="/assets/android-chrome-192x192-edb313ad64ec75f942ce3416e9d18c2021f682275f4d992696caa2695e882fbd.png" sizes="192x192" />
+  <link rel="icon" type="image/png" href="/assets/favicon-16x16-1772a97682f5b3f45c3f98c18f98634808b637a5595026962709fb54af9b9044.png" sizes="16x16" />
+  <link rel="mask-icon" href="/assets/tab-icon-bc0cbb520d6583761367b3e627119898fe5304b85fff367d6be475fea9cdbc52.svg" color="#7ebc6f" />
+  <link rel="manifest" href="/assets/manifest-63908e296e51e1608ae31ec3c7c39eb12b544bd1459921a2e42298604de3ff45.json" />
+  <meta name="msapplication-config" content="/assets/browserconfig-807d291ce027322cda4de0189eb2bbc65919dc2de8df7d4d389b6da4aa9f899c.xml" />
+  <meta name="msapplication-TileColor" content="#00a300" />
+  <meta name="msapplication-TileImage" content="/assets/mstile-144x144-ddbe37d9292379699901d3522682c6b24e0223849b5ef0730d1da3b924463376.png" />
+  <meta name="theme-color" content="#ffffff" />
+  <link href="https://www.openstreetmap.org/oauth/authorize" rel="canonical" />
+  <link rel="publisher" href="https://plus.google.com/111953119785824514010" />
+  <link rel="search" type="application/opensearchdescription+xml" title="OpenStreetMap Search" href="/assets/osm-0aa4c48d8b5195b33e6e63fe57ac81e9c3d19fcf98e0f09a3f67a83456b9a6b4.xml" />
+  <meta name="description" content="OpenStreetMap is the free wiki world map." />
+  <meta property="og:site_name" content="OpenStreetMap" /><meta property="og:title" content="OpenStreetMap" /><meta property="og:type" content="website" /><meta property="og:image" content="https://www.openstreetmap.org/assets/osm_logo_256-cde84d7490f0863c7a0b0d0a420834ebd467c1214318167d0f9a39f25a44d6bd.png" /><meta property="og:image:secure_url" content="https://www.openstreetmap.org/assets/osm_logo_256-cde84d7490f0863c7a0b0d0a420834ebd467c1214318167d0f9a39f25a44d6bd.png" /><meta property="og:url" content="https://www.openstreetmap.org/oauth/authorize" /><meta property="og:description" content="OpenStreetMap is a map of the world, created by people like you and free to use under an open license." />
+
+
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="8M6NWjp9EEcRYnQIpyCeEOwuB0txB7ewFWXOsyheAoKO1v6H45AS2TwIxDdGm+yM0zKzqcQEEjvk5V/ghT9ecQ==" />
+
+  <title>OpenStreetMap</title>
+</head>
+  <body class="oauth oauth-authorize">
+    <header class="closed">
+  <h1>
+    <a href="/" class="geolink">
+      <picture>
+        <source srcset="/assets/osm_logo-0e91a8acd0a92c1bf14204322322e57c65c2a7e318fec6907252fed929b7d6d3.svg" type="image/svg+xml"></source>
+        <img srcset="/assets/osm_logo-0e91a8acd0a92c1bf14204322322e57c65c2a7e318fec6907252fed929b7d6d3.svg" alt="OpenStreetMap logo" class="logo" src="/assets/osm_logo-ce691ac3325e0ebe119ff9087858192cc7677e50d7b77655cafc1f208161ad79.png" />
+      </picture>
+      OpenStreetMap
+    </a>
+  </h1>
+  <a href="#" id="menu-icon"></a>
+  <nav class='primary'>
+
+    <ul>
+      <li id="edit_tab" class="dropdown ">
+        <a class="tab geolink editlink" id="editanchor" data-editor="id" href="/edit">Edit</a>
+        <a class='dropdown-toggle' data-toggle='dropdown' href='#'><b class="caret"></b></a>
+        <ul class='dropdown-menu'>
+            <li>
+              <a data-editor="id" class="geolink editlink" href="/edit?editor=id">Edit with iD (in-browser editor)</a>
+            </li>
+            <li>
+              <a data-editor="potlatch2" class="geolink editlink" href="/edit?editor=potlatch2">Edit with Potlatch 2 (in-browser editor)</a>
+            </li>
+            <li>
+              <a data-editor="remote" class="geolink editlink" href="/edit?editor=remote">Edit with Remote Control (JOSM or Merkaartor)</a>
+            </li>
+        </ul>
+      </li>
+      <li id="history_tab" class="">
+        <a class="tab geolink" href="/history">History</a>
+      </li>
+      <li id="export_tab" class="">
+        <a class="tab geolink" href="/export">Export</a>
+      </li>
+    </ul>
+  </nav>
+  <nav class='secondary'>
+    <ul>
+      <li class="compact-hide "><a href="/traces">GPS Traces</a></li>
+      <li class="compact-hide "><a href="/diary">User Diaries</a></li>
+      <li class="compact-hide "><a href="/copyright">Copyright</a></li>
+      <li class="compact-hide "><a href="/help">Help</a></li>
+      <li class="compact-hide "><a href="/about">About</a></li>
+      <li id="compact-secondary-nav" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">More <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li class=""><a href="/traces">GPS Traces</a></li>
+          <li class=""><a href="/diary">User Diaries</a></li>
+          <li class=""><a href="/copyright">Copyright</a></li>
+          <li class=""><a href="/help">Help</a></li>
+          <li class=""><a href="/about">About</a></li>
+        </ul>
+      </li>
+    </ul>
+      <div class='dropdown user-menu logged-in'>
+        <a class='dropdown-toggle' data-toggle='dropdown' href="#">
+          <img width="25" height="25" class="user_thumbnail_tiny" alt="" src="/assets/users/images/small-19cb2e87cebaee3dbe77d1b540f68136dae6f8e63ec055907d19f639773101e2.png" />
+
+          <span class="user-button">
+            <span class='username'>
+              Filip Tanic
+            </span>
+            <b class="caret"></b>
+          </span>
+        </a>
+        <ul class='dropdown-menu'>
+          <li>
+            <a href="/messages/inbox">
+              <span class='count-number'>0</span>
+              My Messages
+</a>          </li>
+          <li>
+            <a href="/user/Filip%20Tanic">My Profile</a>
+          </li>
+          <li>
+            <a href="/user/Filip%20Tanic/account">My Settings</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+
+          </li>
+          <li>
+            <a class="geolink" href="/logout?referer=%2Foauth%2Fauthorize%3Foauth_token%3DN3LxHKZJ8y8epfrVOl5GJrr0kBlha63zpjAbMjEl&amp;session=da5f67e08285506a644332b1fdc4c7f3">Log Out</a>
+          </li>
+        </ul>
+      </div>
+  </nav>
+</header>
+
+    <div id="content" class="">
+
+
+
+      <div class="content-heading">
+        <div class="content-inner">
+            <h1>Authorize access to your account</h1>
+
+        </div>
+      </div>
+    <div class="content-body">
+      <div class="content-inner">
+
+<p>The application <a href="https://tasks.hotosm.org">HOT Tasking Manager</a> is requesting access to your account, <a href="/user/Filip%20Tanic">Filip Tanic</a>. Please check whether you would like the 
+application to have the following capabilities. You may choose as many or as few as you like.</p>
+
+<form action="https://www.openstreetmap.org/oauth/authorize" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="G6+XSlhuUSGLHh5vxYaqg1jcGx//db8UnrEQmGGyNqcxh8gPHAuoMeEX6v13ZcQbwjz5QCqo3usfC5EngKUv5Q==" />
+  <input type="hidden" name="oauth_token" id="oauth_token" value="N3LxHKZJ8y8epfrVOl5GJrr0kBlha63zpjAbMjEl" />
+  <p>Allow the client application to:</p>
+  <ul>
+    <li><input type="checkbox" name="allow_read_prefs" id="allow_read_prefs" value="yes" checked="checked" /><label for="allow_read_prefs">read your user preferences.</label></li>
+  </ul>
+  <p><input type="submit" name="commit" value="Grant Access" data-disable-with="Grant Access" /></p>
+</form>
+      </div>
+    </div>
+</div>
+
+    <noscript><p><img src="https://piwik.openstreetmap.org/piwik.php?idsite=1" class="piwik" alt="" /></p></noscript>
+  </body>
+</html>
+
+Traceback (most recent call last):
+  File "d:/Test1/test2.py", line 39, in <module>
+    print(authentication_api_instance.api_v1_auth_login_get())
+  File "d:\Test1\swaggerAPIClient\swagger_client\apis\authentication_api.py", line 183, in api_v1_auth_login_get
+    (data) = self.api_v1_auth_login_get_with_http_info(**kwargs)
+  File "d:\Test1\swaggerAPIClient\swagger_client\apis\authentication_api.py", line 258, in api_v1_auth_login_get_with_http_info
+    _return_http_data_only=params.get('_return_http_data_only'))
+  File "d:\Test1\swaggerAPIClient\swagger_client\api_client.py", line 337, in call_api
+    response_type, auth_settings, callback, _return_http_data_only)
+  File "d:\Test1\swaggerAPIClient\swagger_client\api_client.py", line 158, in __call_api
+    post_params=post_params, body=body)
+  File "d:\Test1\swaggerAPIClient\swagger_client\api_client.py", line 357, in request
+    headers=headers)
+  File "d:\Test1\swaggerAPIClient\swagger_client\rest.py", line 193, in GET
+    query_params=query_params)
+  File "d:\Test1\swaggerAPIClient\swagger_client\rest.py", line 186, in request
+    raise ApiException(http_resp=r)
+swaggerAPIClient.swagger_client.rest.ApiException: (403)
+Reason: Forbidden
+HTTP response headers: HTTPHeaderDict({'Date': 'Thu, 11 Jul 2019 11:24:37 GMT', 'Server': 'Apache/2.4.29 (Ubuntu)', 'Cache-Control': 'no-cache', 'Vary': 'Accept-Language,Origin', 'X-Permitted-Cross-Domain-Policies': 'none', 'X-XSS-Protection': '1; mode=block', 'Content-Language': 'en', 'X-Request-Id': 'XSccdVtDWUwvT147x3kRXwAAAE8', 'X-Download-Options': 'noopen', 'X-Runtime': '0.011369', 'X-Frame-Options': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'Content-Security-Policy': "default-src 'self'; child-src 'self'; connect-src 'self' piwik.openstreetmap.org; font-src 'none'; form-action 'self'; frame-ancestors 'self'; frame-src 'self'; img-src 'self' data: www.gravatar.com *.wp.com *.tile.openstreetmap.org *.tile.thunderforest.com *.openstreetmap.fr piwik.openstreetmap.org; manifest-src 'self'; 
+media-src 'none'; object-src 'self'; script-src 'self' piwik.openstreetmap.org; style-src 'self'; worker-src 'none'", 'X-Powered-By': 'Phusion Passenger 6.0.2', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Expect-CT': 'max-age=0, report-uri="https://openstreetmap.report-uri.com/r/d/ct/reportOnly"', 'Upgrade': 'h2', 'Status': '403 Forbidden', 'Transfer-Encoding': 'chunked', 'Content-Type': 'application/json'})
