@@ -15,6 +15,7 @@ parser.add_argument('-p', '--password', type=str)
 parser.add_argument('-a', '--areaOfInterest', type=str)
 parser.add_argument('-n', '--projectName', type=str)
 parser.add_argument('-t', '--tasks', type=str)
+parser.add_argument('--cloneFromProjectId', type=str)
 
 parser.add_argument('-i', '--projectId', type=str)
 parser.add_argument('--allowedUsernames', type=str)
@@ -167,6 +168,8 @@ elif(args.api[0] == "project"):
         body["projectName"] = args.projectName
         body["areaOfInterest"] = aoi
         body["tasks"] = tasks
+        if(args.cloneFromProjectId != None): body["cloneFromProjectId"] = int(args.cloneFromProjectId)
+
         print(body)
 
         reply = project_admin_api.ProjectAdminApi().api_v1_admin_project_put(body, login_api_instance.get_authorization(), _preload_content=False)
@@ -205,7 +208,7 @@ elif(args.api[0] == "project"):
             arg_val = arg_pair[1]
 
             if(arg_val == None or arg_name == "api" or arg_name == "operation"):
-                reply.pop(arg_name, None)
+                #reply.pop(arg_name, None)
                 continue
 
             if(arg_name == "allowedUsernames"):
