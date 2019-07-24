@@ -111,7 +111,7 @@ dueDate = "2020-04-11T12:38:49"
 enforceMapperLevel = False
 enforceValidatorRole = False
 entitiesToMap = "Buildings only"
-imagery = "http//www.bing.com/maps/"
+imagery = "https://www.bing.com/maps/"
 josmPreset = "josm preset goes here"
 licenseId = 1
 mapperLevel = "BEGINNER"
@@ -238,21 +238,22 @@ class UserLoginAPI:
         return self.authorization
     
     def api_v1_user_searchAll(self):
+        """ DEPRECATED - Use swagger_client instead
+        Returns all users
+
+        Parameters:
+
+        Returns:
+        string: reply from the server
+        
+        """
         r = urllib3.PoolManager().request('GET', 'http://tasking-manager-msopenmaps.cloudapp.net/api/v1/user/search-all',
                   headers={'Authorization': self.authorization,
                           'Server': 'nginx',
                           'Content-Type': 'application/json',
                           'Vary': 'Accept-Encoding',
                           'Content-Encoding': 'gzip'})
-        """ DEPRECATED - Use swagger_client instead
-          Returns all users
-
-          Parameters:
-
-          Returns:
-          string: reply from the server
-          
-          """
+        
         print(r.data.decode())
         return r.data.decode()
     
@@ -518,3 +519,5 @@ body = {
 }
 reply = grid_api_instance.api_v1_grid_intersecting_tiles_put(body, my_api_instance.get_authorization(), _preload_content=False)
 print(reply.data.decode()) """
+
+#UserLoginAPI().obtain_authorization("v-fita@microsoft.com", "Vvardenfello1")

@@ -104,7 +104,7 @@ elif(args.api[0] == "project"):
         }
 
         pattern_1 = r"(\[.*\])"
-        pattern_2 = r"\[\s*([0-9\.]+)\s*,\s*([0-9\.]+)\s*\]"
+        pattern_2 = r"\[\s*([0-9-\.]+)\s*,\s*([0-9-\.]+)\s*\]"
         matches_1 = re.findall(pattern_1, args.areaOfInterest)
         aoi_features = []
         for match_1 in matches_1:
@@ -135,7 +135,7 @@ elif(args.api[0] == "project"):
         #print(aoi)
 
         pattern_1 = r"(\[.*\])"
-        pattern_2 = r"\[\s*([0-9\.]+)\s*,\s*([0-9\.]+)\s*\]"
+        pattern_2 = r"\[\s*([0-9-\.]+)\s*,\s*([0-9-\.]+)\s*\]"
         matches_1 = re.findall(pattern_1, args.areaOfInterest)
         tasks_features = []
         for match_1 in matches_1:
@@ -259,3 +259,10 @@ elif(args.api[0] == "project"):
 
     else:
         print("Project api operations are: create, update")
+
+elif(args.api[0] == "task":
+    
+    if(args.operation[0] == "map"):
+
+    else:
+        print("Task api operations are: map")
