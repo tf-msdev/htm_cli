@@ -260,7 +260,7 @@ elif(args.api[0] == "project"):
     else:
         print("Project api operations are: create, update")
 
-elif(args.api[0] == "task":
+elif(args.api[0] == "task"):
     
     if(args.operation[0] == "map"):
 
