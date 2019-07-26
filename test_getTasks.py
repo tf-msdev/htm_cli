@@ -109,4 +109,9 @@ print(reply.data.decode())
 // print results
 out body;
 >;
-out skel qt; """
+out skel qt; 
+
+https://forum.openstreetmap.org/viewtopic.php?id=56442
+https://taginfo.openstreetmap.org/
+
+"""
