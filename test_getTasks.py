@@ -93,3 +93,20 @@ fields = {
 print(login_api_instance.get_authorization().split()[1])
 reply = urllib3.PoolManager().request("GET", "http://127.0.0.1:8111/load_and_zoom_ms", fields=fields, headers=headers)
 print(reply.data.decode())
+
+""" [out:json][timeout:25];
+// gather results
+(
+  // query part for: “shop=bicycle”
+  node["shop"="bicycle"]({{bbox}});
+  way["shop"="bicycle"]({{bbox}});
+  relation["amenity"="cafe"]({{bbox}});
+  // query part for: “shop=bicycle”
+  node["amenity"="cafe"]({{bbox}});
+  way["amenity"="cafe"]({{bbox}});
+  relation["shop"="bicycle"]({{bbox}});
+);
+// print results
+out body;
+>;
+out skel qt; """
