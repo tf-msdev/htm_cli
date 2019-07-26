@@ -111,6 +111,7 @@ elif(args.api[0] == "project"):
             match_1 = match_1[1:-1]
             matches_2 = re.findall(pattern_2, match_1)
             polygon = []
+            print(matches_2)#DEBUG
             for match_2 in matches_2:
                 x = float(match_2[0])
                 y = float(match_2[1])
@@ -263,6 +264,6 @@ elif(args.api[0] == "project"):
 elif(args.api[0] == "task"):
     
     if(args.operation[0] == "map"):
-
+        print("STUB")
     else:
         print("Task api operations are: map")
