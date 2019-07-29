@@ -1,4 +1,5 @@
 from htm_msopenmaps_custom_api import UserLoginAPI
+from swaggerAPIClient.swagger_client.api import project_admin_api, mapping_api
 import os
 import subprocess
 import urllib3
@@ -37,7 +38,23 @@ downmost = min([nw_coord[1], ne_coord[1], se_coord[1], sw_coord[1]])
 upmost = max([nw_coord[1], ne_coord[1], se_coord[1], sw_coord[1]])
 
 login_api_instance = UserLoginAPI()
-login_api_instance.obtain_authorization("v-fita@microsoft.com", "Vvardenfello1")
+#login_api_instance.obtain_authorization("v-fita@microsoft.com", "Vvardenfello1")
+
+""" reply = mapping_api.MappingApi().api_v1_project_project_id_has_user_locked_tasks_details_get("Token TVRBeE1qY3pOVEkuRUNDYm9BLnlCbzNQNTBIR19PRFZvbTdsSVRJOVRlbVZUSQ==", "en", 445, _preload_content=False)
+print(reply.data.decode())
+
+project_id = 445
+fields={
+	"as_file" : "false",
+	"abbreviated" : "false"
+}
+headers = {
+	"Accept" : "application/json",
+	"Accept-Language" : "en"
+}
+reply = urllib3.PoolManager().request("GET", "http://tasking-manager-msopenmaps.cloudapp.net/api/v1/project/"+str(project_id), fields=fields, headers=headers)
+print(reply.data.decode()) """
+#This part was about geting the tasks geometry. Unauthorized access on every way to get the info. Confidential maybe?
 
 print("JOSM path?")
 #josm_command = input()
@@ -51,6 +68,9 @@ while True:
 	if("INFO: Changeset updater active (checks every 60 minutes if open changesets have been closed)" in line.decode()):
 		break
 
+
+#get task
+
 #Process started
 headers = {
 	"Host" : "127.0.0.1:8111",
@@ -63,35 +83,28 @@ headers = {
 	"Accept-Language" : "en-US,en;q=0.9"
 }
 
-#reply = mapping_api_instance = mapping_api.MappingApi().api_v1_project_project_id_task_task_id_lock_for_mapping_post(login_api_instance.get_authorization(), "en", 418, 24, _preload_content=False)
-#print(reply.data.decode())
-
-#reply = mapping_api_instance = mapping_api.MappingApi().api_v1_project_project_id_tasks_as_gpx_get(445, _preload_content=False)
-#print(reply.data.decode())
-
-#reply = mapping_api_instance = mapping_api.MappingApi().api_v1_project_project_id_tasks_as_osm_xml_get(418, tasks="24", as_file="false", _preload_content=False)
-#print(reply.data.decode())
-
 fields = {
-	"left" : leftmost-0.005,
-	"bottom" : downmost-0.005,
-	"right" : rightmost+0.005,
-	"top" : upmost+0.005,
-    "addtags" : "waterway=river",
+	"left" : -2.9972076410647,
+	"bottom" : 43.04605992990042,
+	"right" : -2.9968643183108394,
+	"top" : 43.04631083144409,
 	"changeset_comment" : "",
 	"changeset_source" : "Bing",
-	"new_layer" : True,
+	"new_layer" : False,
 	"resume_edit" : False,
 	"project_id" : 445,
 	"task_id" : 3,
 	"validation_required" : False,
 	"task_step" : "mapping",
 	"download_gpx" : True,
-	"auth_token" : login_api_instance.get_authorization().split()[1]
+	"download_policy" : "never",
+	"auth_token" : "TVRBeE1qY3pOVEkuRUNDYm9BLnlCbzNQNTBIR19PRFZvbTdsSVRJOVRlbVZUSQ=="#login_api_instance.get_authorization().split()[1]
 }
 
-print(login_api_instance.get_authorization().split()[1])
 reply = urllib3.PoolManager().request("GET", "http://127.0.0.1:8111/load_and_zoom_ms", fields=fields, headers=headers)
+print(reply.data.decode())
+
+reply = urllib3.PoolManager().request("GET", "http://127.0.0.1:8111/import?url=http://overpass-api.de/api/interpreter?data=[timeout:20];(node(43.04605992990042,-2.9972076410647,43.04631083144409,-2.9968643183108394);way(43.04605992990042,-2.9972076410647,43.04631083144409,-2.9968643183108394);relation(43.04605992990042,-2.9972076410647,43.04631083144409,-2.9968643183108394););out%20meta;>;out%20meta;")
 print(reply.data.decode())
 
 """ [out:json][timeout:25];
