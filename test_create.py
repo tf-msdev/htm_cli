@@ -59,6 +59,15 @@ body = {
   "projectName" : "My project",
   "tasks" : {
     "features": [
+      
+    ],
+    "type" : "FeatureCollection"
+  }
+}
+
+""" ,
+  "tasks" : {
+    "features": [
       {
         "geometry": {
         "coordinates": [
@@ -84,11 +93,10 @@ body = {
       }
     ],
     "type" : "FeatureCollection"
-  }
-}
+  } """
 
 #print(nw_coord, ne_coord, se_coord, sw_coord)
 #print(body)
 
-#reply = project_admin_api.ProjectAdminApi().api_v1_admin_project_put(body, "Token TVRBeE1qY3pOVEkuRUJ0cVN3LlpFbkowVkhhYlBQTEVLY2Y1aG5jTjNqTWd4OA==", _preload_content=False)
-#print(reply.data.decode())
+reply = project_admin_api.ProjectAdminApi().api_v1_admin_project_put(body, "Token TVRBeE1qY3pOVEkuRUNDYm9BLnlCbzNQNTBIR19PRFZvbTdsSVRJOVRlbVZUSQ==", _preload_content=False)
+print(reply.data.decode())
