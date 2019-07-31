@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="Overpass API 0.7.55.7 8b86ff77">
+<note>The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.</note>
+<meta osm_base="2019-07-31T17:25:02Z"/>
+
+  <bounds minlat="44.0007178" minlon="20.9250000" maxlat="44.0046691" maxlon="20.9289551"/>
+
+  <way id="695730790" version="1" timestamp="2019-06-07T21:49:57Z" changeset="71039244" uid="4052489" user="Јован Петровић">
+    <nd ref="6532926026"/>
+    <nd ref="6532926027"/>
+    <nd ref="6532926028"/>
+    <nd ref="6532926029"/>
+    <nd ref="6532926030"/>
+    <nd ref="6532926031"/>
+    <nd ref="6532926032"/>
+    <nd ref="6532926033"/>
+    <nd ref="6532926026"/>
+    <tag k="building" v="yes"/>
+  </way>
+  <node id="6532926026" lat="44.0007275" lon="20.9281912" version="1" timestamp="2019-06-07T21:49:57Z" changeset="71039244" uid="4052489" user="Јован Петровић"/>
+  <node id="6532926027" lat="44.0008109" lon="20.9282927" version="1" timestamp="2019-06-07T21:49:57Z" changeset="71039244" uid="4052489" user="Јован Петровић"/>
+  <node id="6532926028" lat="44.0010007" lon="20.9279914" version="1" timestamp="2019-06-07T21:49:57Z" changeset="71039244" uid="4052489" user="Јован Петровић"/>
+  <node id="6532926029" lat="44.0007550" lon="20.9276920" version="1" timestamp="2019-06-07T21:49:57Z" changeset="71039244" uid="4052489" user="Јован Петровић"/>
+  <node id="6532926030" lat="44.0006943" lon="20.9277882" version="1" timestamp="2019-06-07T21:49:57Z" changeset="71039244" uid="4052489" user="Јован Петровић"/>
+  <node id="6532926031" lat="44.0007974" lon="20.9279138" version="1" timestamp="2019-06-07T21:49:57Z" changeset="71039244" uid="4052489" user="Јован Петровић"/>
+  <node id="6532926032" lat="44.0007010" lon="20.9280667" version="1" timestamp="2019-06-07T21:49:57Z" changeset="71039244" uid="4052489" user="Јован Петровић"/>
+  <node id="6532926033" lat="44.0007604" lon="20.9281390" version="1" timestamp="2019-06-07T21:49:57Z" changeset="71039244" uid="4052489" user="Јован Петровић"/>
+
+</osm>

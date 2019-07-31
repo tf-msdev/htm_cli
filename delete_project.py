@@ -1,6 +1,6 @@
 from swaggerAPIClient.swagger_client.api import project_admin_api
 
-to_delete = [445, 461]
+to_delete = [474]
 
 for proj in to_delete:
     print(proj)

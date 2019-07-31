@@ -184,12 +184,32 @@ class UserLoginAPI:
         self.authorization = authorization
         self.timeCreated = datetime.datetime.now()
 
-    def set_authorization_manually(self, authorization):
-        self.authorization = authorization
+    def set_authorization_manually(self, encoded_session_token):
+        """ Sets the authorization token only
+		
+        Parameters:
+        encoded_session_token (string): base64 encoded session token
 
-    def get_authorization(self):
-        return self.authorization
+        Returns:
+        void
+		"""
+        self.authorization = encoded_session_token
 
+    def get_authorization(self, token_only=False):
+        """ Returns authorization
+
+        Parameters:
+        token_only (boolean): If True, returns token only, else it returns a string in format "Token <encoded_session_token>"
+
+        Returns:
+        string: token or header-ready token + session_token
+
+        """
+        if(token_only == True):
+            return self.authorization
+
+        return "Token " + self.authorization
+        
     def obtain_authorization(self, admin_username, admin_password):
         """ Obtains authorization for the HTM
 
@@ -233,7 +253,7 @@ class UserLoginAPI:
         print("encoded_session_token ", encoded_session_token)
 
         #This is what an Authorization header should look like
-        self.authorization = 'Token ' + encoded_session_token
+        self.authorization = encoded_session_token
         self.timeCreated = datetime.datetime.now()
         return self.authorization
     
@@ -325,85 +345,58 @@ class UserLoginAPI:
                                   projectStatus=None,
                                   taskCreationMode=None,
                                   validationEditors=None):
-      """ DEPRECATED - Use swagger_client instead.
-      Updates the project with the given id
-
-      Parameters:
-      project_id (int): Id of the target project
-
-      Returns:
-      string: reply from the server
-      
-      """
-      parameters = locals().copy()
-      body_dict = {}
-      for p in parameters:
-        if(p != 'self' and parameters[p] != None):
-          body_dict[p] = parameters[p]
-
-      encoded_body = json.dumps(body_dict)
-      r = urllib3.PoolManager().request('POST', 'http://tasking-manager-msopenmaps.cloudapp.net/api/v1/admin/project/' + str(project_id),
-                  headers={'Authorization': self.authorization,
-                          'Accept': 'text/html',
-                          'Server': 'nginx',
-                          'Content-Type': 'application/json',
-                          'Vary': 'Accept-Encoding',
-                          'Content-Encoding': 'gzip'},
-                  body = encoded_body)
-      print(r.data.decode())
-      return r.data.decode()
-
-    @staticmethod
-    def util_split_quad_multipolygon_tasks(tasks):
-      newCoordinates = []
-      tasks_copy = tasks["features"][0]["geometry"]["coordinates"][0].copy()
-
-      for polygon in tasks_copy:
-        minH = 1000
-        maxH = -1000
-        for point in polygon:
-          if(point[0] > maxH):
-            maxH = point[0]
-          if(point[0] < minH):
-            minH = point[0]
-        minV = 1000
-        maxV = -1000
-        for point in polygon:
-          if(point[1] > maxV):
-            maxV = point[1]
-          if(point[1] < minV):
-            minV = point[1]
+        """ DEPRECATED - Use swagger_client instead.
+        Updates the project with the given id
+    
+        Parameters:
+        project_id (int): Id of the target project
+    
+        Returns:
+        string: reply from the server
         
-        midH = (minH + maxH) / 2.0
-        midV = (minV + maxV) / 2.0
+        """
+        parameters = locals().copy()
+        body_dict = {}
+        for p in parameters:
+          if(p != 'self' and parameters[p] != None):
+            body_dict[p] = parameters[p]
+    
+        encoded_body = json.dumps(body_dict)
+        r = urllib3.PoolManager().request('POST', 'http://tasking-manager-msopenmaps.cloudapp.net/api/v1/admin/project/' + str(project_id),
+                    headers={'Authorization': self.authorization,
+                            'Accept': 'text/html',
+                            'Server': 'nginx',
+                            'Content-Type': 'application/json',
+                            'Vary': 'Accept-Encoding',
+                            'Content-Encoding': 'gzip'},
+                    body = encoded_body)
+        print(r.data.decode())
+        return r.data.decode()
 
-        points = [ [minH, maxV], [midH, maxV], [maxH, maxV], [minH, midV], [midH, midV], [maxH, midV], [minH, minV], [midH, minV], [maxH, minV] ]
-        newPolygon = []
-        newPolygon.append([ points[0], points[1], points[4], points[3], points[0] ])
-        newPolygon.append([ points[1], points[2], points[5], points[4], points[1] ])
-        newPolygon.append([ points[4], points[5], points[8], points[7], points[4] ])
-        newPolygon.append([ points[3], points[4], points[7], points[6], points[3] ])
-        newCoordinates.append(newPolygon)
-      
-      tasks["features"].clear()
-      for coord in newCoordinates:
-        for single_coord in coord:
-          newFeature = {"geometry": {
-              "type": "MultiPolygon"
-            },
-            "properties": {
-              "isSquare": True,
-              "x": 2400,
-              "y": 1750,
-              "zoom": 15
-            },
-            "type": "Feature"
-          }
-          newFeature["geometry"]["coordinates"] = [[single_coord]]
-          tasks["features"].append(newFeature)
-      
-      return tasks
+class ProjectsApi:
 
+    def api_custom_project_project_id_get(self, authorization, project_id):
+        """ Returns a json object of the target project.
+
+        Parameters:
+        authorization : header-ready string containing the base64 encoded session string, "Token TVRBeE1qY...USQ=="
+        project_id : target project id
+
+        Returns:
+        dict : json object containing project information
+            
+        """
+        headers = {
+            "Authorization" : authorization,
+            "Accept" : "application/json, text/plain, */*",
+            "Accept-Encoding" : "gzip, deflate",
+            "Accept-Language" : "en",
+            "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36"
+        }
+
+        reply = urllib3.PoolManager().request('GET', 'http://tasking-manager-msopenmaps.cloudapp.net/api/v1/project/'+str(project_id), headers=headers)
+        #print(reply.data.decode())
+        return json.loads(reply.data)
 
 
 #my_api_instance = MyAPI()

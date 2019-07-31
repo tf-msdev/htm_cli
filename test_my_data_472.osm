@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <bounds minlat='44.0007178' minlon='21.027832' maxlat='44.0086201' maxlon='21.0388184' origin='Overpass API 0.7.55.7 8b86ff77' />
+  <bounds minlat='0.0' minlon='0.0' maxlat='0.0' maxlon='0.0' origin='OpenStreetMap server' />
+</osm>

@@ -1,9 +1,9 @@
-from htm_msopenmaps_custom_api import UserLoginAPI
+import htm_msopenmaps_custom_api
 from swaggerAPIClient.swagger_client.api import project_admin_api, mapping_api
 import os
 import subprocess
 import urllib3
-import test_create
+import urllib
 import math
 
 def deg2num(lat_deg, lon_deg, zoom):
@@ -37,24 +37,39 @@ rightmost = max([nw_coord[0], ne_coord[0], se_coord[0], sw_coord[0]])
 downmost = min([nw_coord[1], ne_coord[1], se_coord[1], sw_coord[1]])
 upmost = max([nw_coord[1], ne_coord[1], se_coord[1], sw_coord[1]])
 
-login_api_instance = UserLoginAPI()
+login_api_instance = htm_msopenmaps_custom_api.UserLoginAPI()
+login_api_instance.set_authorization_manually("TVRBeE1qY3pOVEkuRUNNRGZnLmktaWVQVkdVOTRSaF80NnJxZU1ENzd0ZXJRaw==")
 #login_api_instance.obtain_authorization("v-fita@microsoft.com", "Vvardenfello1")
 
-""" reply = mapping_api.MappingApi().api_v1_project_project_id_has_user_locked_tasks_details_get("Token TVRBeE1qY3pOVEkuRUNDYm9BLnlCbzNQNTBIR19PRFZvbTdsSVRJOVRlbVZUSQ==", "en", 445, _preload_content=False)
-print(reply.data.decode())
+#Parameters
+project_id = 475
+task_id = 3
 
-project_id = 445
-fields={
-	"as_file" : "false",
-	"abbreviated" : "false"
+#Locking the task for mapping.
+#reply = mapping_api.MappingApi().api_v1_project_project_id_task_task_id_lock_for_mapping_post(login_api_instance.get_authorization(), "en", project_id, task_id, _preload_content=False)
+#print(reply.data.decode())
+
+#Getting tasks geometry, boundaries.
+project_json = htm_msopenmaps_custom_api.ProjectsApi().api_custom_project_project_id_get(login_api_instance.get_authorization(), project_id)
+task_bbox = {
+	"left": 500.0,
+	"bottom": 500.0,
+	"right": 0.0,
+	"top": 0.0,
 }
-headers = {
-	"Accept" : "application/json",
-	"Accept-Language" : "en"
-}
-reply = urllib3.PoolManager().request("GET", "http://tasking-manager-msopenmaps.cloudapp.net/api/v1/project/"+str(project_id), fields=fields, headers=headers)
-print(reply.data.decode()) """
-#This part was about geting the tasks geometry. Unauthorized access on every way to get the info. Confidential maybe?
+for task in project_json["tasks"]["features"]:
+	if(task["properties"]["taskId"] == task_id):
+		for coord in task["geometry"]["coordinates"][0][0]:
+			if(coord[0] < task_bbox["left"]):
+				task_bbox["left"] = coord[0]
+			if(coord[0] > task_bbox["right"]):
+				task_bbox["right"] = coord[0]
+			if(coord[1] < task_bbox["bottom"]):
+				task_bbox["bottom"] = coord[1]
+			if(coord[1] > task_bbox["top"]):
+				task_bbox["top"] = coord[1]
+		break
+print(task_bbox)#DEBUG
 
 print("JOSM path?")
 #josm_command = input()
@@ -67,9 +82,6 @@ while True:
 	print(line)
 	if("INFO: Changeset updater active (checks every 60 minutes if open changesets have been closed)" in line.decode()):
 		break
-
-
-#get task
 
 #Process started
 headers = {
@@ -84,27 +96,71 @@ headers = {
 }
 
 fields = {
-	"left" : -2.9972076410647,
-	"bottom" : 43.04605992990042,
-	"right" : -2.9968643183108394,
-	"top" : 43.04631083144409,
+	"left" : task_bbox["left"],
+	"bottom" : task_bbox["bottom"],
+	"right" : task_bbox["right"],
+	"top" : task_bbox["top"],
 	"changeset_comment" : "",
 	"changeset_source" : "Bing",
 	"new_layer" : False,
 	"resume_edit" : False,
-	"project_id" : 445,
-	"task_id" : 3,
+	"project_id" : project_id,
+	"task_id" : task_id,
 	"validation_required" : False,
 	"task_step" : "mapping",
 	"download_gpx" : True,
 	"download_policy" : "never",
-	"auth_token" : "TVRBeE1qY3pOVEkuRUNDYm9BLnlCbzNQNTBIR19PRFZvbTdsSVRJOVRlbVZUSQ=="#login_api_instance.get_authorization().split()[1]
+	"auth_token" : login_api_instance.get_authorization(token_only=True)
 }
 
 reply = urllib3.PoolManager().request("GET", "http://127.0.0.1:8111/load_and_zoom_ms", fields=fields, headers=headers)
 print(reply.data.decode())
 
-reply = urllib3.PoolManager().request("GET", "http://127.0.0.1:8111/import?url=http://overpass-api.de/api/interpreter?data=[timeout:20];(node(43.04605992990042,-2.9972076410647,43.04631083144409,-2.9968643183108394);way(43.04605992990042,-2.9972076410647,43.04631083144409,-2.9968643183108394);relation(43.04605992990042,-2.9972076410647,43.04631083144409,-2.9968643183108394););out%20meta;>;out%20meta;")
+#Create an overpass querry
+overpass_query = {
+	"timeout" : 20,
+	"types" : ["node", "way", "relation"],
+	"tag_filter" : {
+		"building" : None
+	},
+	"bbox" : task_bbox	
+}
+
+def stringifyOverpassQuery(overpass_query):
+	string_query = ""
+	if("bbox" in overpass_query and len(overpass_query["bbox"]) == 4):
+		string_query = string_query + "[bbox:" + str(overpass_query["bbox"]["bottom"]) + "," + str(overpass_query["bbox"]["left"]) + "," + str(overpass_query["bbox"]["top"]) + "," + str(overpass_query["bbox"]["right"]) + "]"
+	if("timeout" in overpass_query):
+		string_query = string_query + "[timeout:" + str(overpass_query["timeout"]) + "];"
+	search_params = ""
+	for type_of in overpass_query["types"]:
+		search_params = search_params + type_of
+
+		if("tag_filter" in overpass_query and len(overpass_query["tag_filter"]) > 0):
+			for tag in overpass_query["tag_filter"]:
+				search_params = search_params + "[\"" + tag + "\""
+				if(overpass_query["tag_filter"][tag] != None):
+					search_params = search_params + "=\"" + overpass_query["tag_filter"][tag] + "\""
+				search_params = search_params + "]"
+
+		search_params = search_params + ";"
+		
+	string_query = string_query + "(" + search_params + ");out%20meta;>;out%20meta;"
+	return string_query
+
+print(stringifyOverpassQuery(overpass_query))
+
+#reply = urllib3.PoolManager().request("GET", "http://127.0.0.1:8111/import?url=http://overpass-api.de/api/interpreter?data="+stringifyOverpassQuery(overpass_query))
+reply = urllib3.PoolManager().request("GET", "http://overpass-api.de/api/interpreter?data="+stringifyOverpassQuery(overpass_query))
+print(reply.data.decode())
+
+fields = {
+	"new_layer" : "true",
+	"layer_name" : "Queried Data",
+	"data" : reply.data.decode()
+}
+
+reply = urllib3.PoolManager().request("GET", "http://127.0.0.1:8111/load_data", fields=fields)
 print(reply.data.decode())
 
 """ [out:json][timeout:25];

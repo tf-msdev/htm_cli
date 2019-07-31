@@ -64,7 +64,7 @@ if(args.api[0] == "user"):
             if(store != None):
                 store.close()
 
-        if(login_api_instance == None or (datetime.datetime.now() - login_api_instance.timeCreated).total_seconds() / 60. > 10.):
+        if(login_api_instance == None or int((datetime.datetime.now() - login_api_instance.timeCreated).total_seconds() / 60.) > 30):
             login_api_instance = UserLoginAPI()
             login_api_instance.obtain_authorization(args.username, args.password)
         

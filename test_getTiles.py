@@ -92,9 +92,9 @@ def tileURL(x,y,z,layer):
     return "%s%d/%d/%d.%s" % (tileLayerBase(layer),z,x,y,tileLayerExt(layer))
 
 #test
-lat_coord = 43.04608
-lon_coord = -2.9969
-zoom = 18
+lat_coord = 44
+lon_coord = 20.935
+zoom = 15
 
 tile_xy = tileXY(lat_coord, lon_coord, zoom)
 print(tile_xy)
@@ -130,7 +130,7 @@ coordinates_2 = [[tile_edges_2[0], tile_edges_2[1]], [tile_edges_2[0], tile_edge
 
 pattern_1 = r"(\[.*\])"
 pattern_2 = r"\[\s*([0-9-\.]+)\s*,\s*([0-9-\.]+)\s*\]"
-matches_1 = re.findall(pattern_1, "[[44,21], [44, 21.05], [44.01, 21.05], [44, 21]]")
+matches_1 = re.findall(pattern_1, "[[44,20.925], [44, 20.95], [44.01, 20.95], [44.01, 20.925], [44,20.925]]")
 aoi_features = []
 for match_1 in matches_1:
     match_1 = match_1[1:-1]
