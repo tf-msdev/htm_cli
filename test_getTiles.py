@@ -90,41 +90,6 @@ def tileLayerBase(layer):
 def tileURL(x,y,z,layer):
     return "%s%d/%d/%d.%s" % (tileLayerBase(layer),z,x,y,tileLayerExt(layer))
 
-#test
-lat_coord = 44
-lon_coord = 20.935
-zoom = 16
-
-tile_xy = tileXY(lat_coord, lon_coord, zoom)
-print(tile_xy)
-tile_edges = tileEdges(tile_xy[0], tile_xy[1], zoom)
-print(tile_edges)
-tile_edges = list(tile_edges)
-
-tmp = tile_edges[0]
-tile_edges[0] = tile_edges[1]
-tile_edges[1] = tmp
-
-tmp = tile_edges[2]
-tile_edges[2] = tile_edges[3]
-tile_edges[3] = tmp
-
-coordinates = [[tile_edges[0], tile_edges[1]], [tile_edges[0], tile_edges[3]], [tile_edges[2], tile_edges[3]], [tile_edges[2], tile_edges[1]], [tile_edges[0], tile_edges[1]]]
-
-#test grid api
-tile_edges_2 = tileEdges(tile_xy[0], tile_xy[1] + 4, zoom)
-print(tile_edges_2)
-tile_edges_2 = list(tile_edges_2)
-
-tmp = tile_edges_2[0]
-tile_edges_2[0] = tile_edges_2[1]
-tile_edges_2[1] = tmp
-
-tmp = tile_edges_2[2]
-tile_edges_2[2] = tile_edges_2[3]
-tile_edges_2[3] = tmp
-
-coordinates_2 = [[tile_edges_2[0], tile_edges_2[1]], [tile_edges_2[0], tile_edges_2[3]], [tile_edges_2[2], tile_edges_2[3]], [tile_edges_2[2], tile_edges_2[1]], [tile_edges_2[0], tile_edges_2[1]]]
 #test grid api
 
 pattern_1 = r"(\[.*\])"

@@ -20,6 +20,7 @@ task_id = 2
 
 #Getting tasks geometry, boundaries.
 project_json = htm_msopenmaps_custom_api.ProjectsApi().api_custom_project_project_id_get(login_api_instance.get_authorization(), project_id)
+print("DEBUG", project_json)
 task_bbox = {
 	"left": 500.0,
 	"bottom": 500.0,
@@ -56,7 +57,7 @@ def thr_foo(josm, event_started):
 		print("JOSM LISTENER:", line)
 		if("INFO: Changeset updater active (checks every 60 minutes if open changesets have been closed)" in line.decode()):
 			event_started.set()
-		if(line.decode() == "" or "RemoteControl received: GET /load_data?new_layer=true&layer_name=Queried+Data" in line.decode()):
+		if("RemoteControl received: GET /load_data?new_layer=true&layer_name=Queried+Data" in line.decode()):
 			break
 	print("JOSM LISTENER: STOPPING")
 
@@ -123,10 +124,9 @@ def stringifyOverpassQuery(overpass_query):
 			for tag in overpass_query["tag_filter"]:
 				search_params = search_params + "[\"" + tag + "\""
 				if(overpass_query["tag_filter"][tag] != None):
-					search_params = search_params + "=\"" + overpass_query["tag_filter"][tag] + "\""
-				search_params = search_params + "]"
-
-		search_params = search_params + ";"
+					search_params = search_params + "=\"" + overpass_query["tag_filter"][tag] + "\"];"
+				else:
+					search_params = search_params + "];" + type_of + "[~\".*\"~\"^" + tag + "$\"];"
 		
 	string_query = string_query + "(" + search_params + ");out%20meta;>;out%20meta;"
 	return string_query
