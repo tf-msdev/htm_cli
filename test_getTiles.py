@@ -1,6 +1,5 @@
 from swaggerAPIClient.swagger_client.api import project_admin_api, grid_api
 import math
-import pygeotile
 import re
 import json
 
@@ -94,7 +93,7 @@ def tileURL(x,y,z,layer):
 #test
 lat_coord = 44
 lon_coord = 20.935
-zoom = 15
+zoom = 16
 
 tile_xy = tileXY(lat_coord, lon_coord, zoom)
 print(tile_xy)
@@ -130,7 +129,7 @@ coordinates_2 = [[tile_edges_2[0], tile_edges_2[1]], [tile_edges_2[0], tile_edge
 
 pattern_1 = r"(\[.*\])"
 pattern_2 = r"\[\s*([0-9-\.]+)\s*,\s*([0-9-\.]+)\s*\]"
-matches_1 = re.findall(pattern_1, "[[44,20.925], [44, 20.95], [44.01, 20.95], [44.01, 20.925], [44,20.925]]")
+matches_1 = re.findall(pattern_1, "[[44.796821, 20.367338], [44.798170, 20.394584], [44.814696, 20.382877], [44.807272, 20.365357], [44.796821, 20.367338]]")
 aoi_features = []
 for match_1 in matches_1:
     match_1 = match_1[1:-1]
@@ -180,7 +179,7 @@ for i in range(len(aoi["features"][0]["geometry"]["coordinates"][0])):
 #print(right)
 #print(top)
 
-zoom_create = 16
+zoom_create = 13
 sw_tile = tileXY(bottom, left, zoom_create)
 se_tile = tileXY(bottom, right, zoom_create)
 ne_tile = tileXY(top, right, zoom_create)
@@ -234,7 +233,7 @@ for x in range(nw_tile[0], se_tile[0]+1):
 
 grid_body = {
   "areaOfInterest" : aoi,
-  "clipToAoi" : True,
+  "clipToAoi" : False,
   "grid" : grid
 }
 

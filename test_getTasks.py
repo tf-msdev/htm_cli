@@ -6,44 +6,13 @@ import urllib3
 import urllib
 import math
 
-def deg2num(lat_deg, lon_deg, zoom):
-    lat_rad = math.radians(lat_deg)
-    n = 2.0 ** zoom
-    xtile = int((lon_deg + 180.0) / 360.0 * n)
-    ytile = int((1.0 - math.log(math.tan(lat_rad) + (1 / math.cos(lat_rad))) / math.pi) / 2.0 * n)
-    return (xtile, ytile)
-
-def num2deg(xtile, ytile, zoom):
-    n = 2.0 ** zoom
-    lon_deg = xtile / n * 360.0 - 180.0
-    lat_rad = math.atan(math.sinh(math.pi * (1.0 - 2.0 * ytile / n)))
-    lat_deg = math.degrees(lat_rad)
-    return (lat_deg, lon_deg)
-
-zoom = 15
-latitude = 43.00048828125
-longitude = -3
-
-nw_xy = deg2num(longitude, latitude, zoom)
-print(nw_xy)
-
-nw_coord = num2deg(nw_xy[0], nw_xy[1], zoom)
-ne_coord = num2deg(nw_xy[0] + 1, nw_xy[1], zoom)
-se_coord = num2deg(nw_xy[0] + 1, nw_xy[1] + 1, zoom)
-sw_coord = num2deg(nw_xy[0], nw_xy[1] + 1, zoom)
-
-leftmost = min([nw_coord[0], ne_coord[0], se_coord[0], sw_coord[0]])
-rightmost = max([nw_coord[0], ne_coord[0], se_coord[0], sw_coord[0]])
-downmost = min([nw_coord[1], ne_coord[1], se_coord[1], sw_coord[1]])
-upmost = max([nw_coord[1], ne_coord[1], se_coord[1], sw_coord[1]])
-
 login_api_instance = htm_msopenmaps_custom_api.UserLoginAPI()
 login_api_instance.set_authorization_manually("TVRBeE1qY3pOVEkuRUNNRGZnLmktaWVQVkdVOTRSaF80NnJxZU1ENzd0ZXJRaw==")
 #login_api_instance.obtain_authorization("v-fita@microsoft.com", "Vvardenfello1")
 
 #Parameters
-project_id = 475
-task_id = 3
+project_id = 477
+task_id = 2
 
 #Locking the task for mapping.
 #reply = mapping_api.MappingApi().api_v1_project_project_id_task_task_id_lock_for_mapping_post(login_api_instance.get_authorization(), "en", project_id, task_id, _preload_content=False)
@@ -73,16 +42,30 @@ print(task_bbox)#DEBUG
 
 print("JOSM path?")
 #josm_command = input()
-josm_command = "C:\Program Files (x86)\JOSM\josm.exe D:\Test1\\bing_aerial_imagery.wms"
+josm_command = "C:\Program Files (x86)\JOSM\josm.exe D:\\Test1\\bing_aerial_imagery.wms"
 #josm_java_commant = "java -jar \"C:\Program Files (x86)\JOSM\josm-tested.jar\" runjosm --download \"D:\Test1\\bing_aerial_imagery.wms\""
 
 josm = subprocess.Popen(josm_command, stdout=subprocess.PIPE)
-while True:
-	line = josm.stdout.readline().rstrip()
-	print(line)
-	if("INFO: Changeset updater active (checks every 60 minutes if open changesets have been closed)" in line.decode()):
-		break
 
+#DEBUG
+import threading
+def thr_foo(josm, event_started):
+	print("JOSM LISTENER: LISTENING")
+	while True:
+		line = josm.stdout.readline().rstrip()
+		print("JOSM LISTENER:", line)
+		if("INFO: Changeset updater active (checks every 60 minutes if open changesets have been closed)" in line.decode()):
+			event_started.set()
+		if(line.decode() == "" or "RemoteControl received: GET /load_data?new_layer=true&layer_name=Queried+Data" in line.decode()):
+			break
+	print("JOSM LISTENER: STOPPING")
+
+event = threading.Event()
+thr = threading.Thread(target=thr_foo, args=[josm, event])
+thr.start()
+event.wait()
+print("Went through")
+#DEBUG
 #Process started
 headers = {
 	"Host" : "127.0.0.1:8111",
@@ -152,7 +135,7 @@ print(stringifyOverpassQuery(overpass_query))
 
 #reply = urllib3.PoolManager().request("GET", "http://127.0.0.1:8111/import?url=http://overpass-api.de/api/interpreter?data="+stringifyOverpassQuery(overpass_query))
 reply = urllib3.PoolManager().request("GET", "http://overpass-api.de/api/interpreter?data="+stringifyOverpassQuery(overpass_query))
-print(reply.data.decode())
+#print(reply.data.decode())
 
 fields = {
 	"new_layer" : "true",
