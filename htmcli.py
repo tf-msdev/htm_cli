@@ -113,7 +113,7 @@ elif(args.api[0] == "project"):
 
         pattern_1 = r"(\[.*\])"
         pattern_2 = r"\[\s*([0-9-\.]+)\s*,\s*([0-9-\.]+)\s*\]"
-        matches_1 = re.findall(pattern_1, "[[44.796821, 20.367338], [44.798170, 20.394584], [44.814696, 20.382877], [44.807272, 20.365357], [44.796821, 20.367338]]")
+        matches_1 = re.findall(pattern_1, args.areaOfInterest)
         aoi_features = []
         for match_1 in matches_1:
             match_1 = match_1[1:-1]
@@ -210,7 +210,7 @@ elif(args.api[0] == "project"):
           "grid" : grid
         }
 
-        reply = grid_api.GridApi().api_v1_grid_intersecting_tiles_put(grid_body, "Token TVRBeE1qY3pOVEkuRUNIdjNnLjNLUzFuUWI3Nkx6UGhzQTNQcHpHRGVkT1hjNA==", _preload_content=False)
+        reply = grid_api.GridApi().api_v1_grid_intersecting_tiles_put(grid_body, login_api_instance.get_authorization(), _preload_content=False)
         #print(reply.data.decode())
         reply_json = json.loads(reply.data)
 
