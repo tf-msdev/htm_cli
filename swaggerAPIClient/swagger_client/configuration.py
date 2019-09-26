@@ -56,9 +56,9 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         # dict to store API prefix (e.g. Bearer)
         self.api_key_prefix = {}
         # Username for HTTP basic authentication
-        self.username = "v-fita@microsoft.com"
+        self.username = ""
         # Password for HTTP basic authentication
-        self.password = "Vvardenfello1"
+        self.password = ""
         # Logging Settings
         self.logger = {}
         self.logger["package_logger"] = logging.getLogger("swagger_client")

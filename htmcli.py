@@ -10,6 +10,7 @@ import subprocess
 import os
 import re
 import json
+from getpass import getpass
 
 parser = argparse.ArgumentParser(description='HOT Tasking Manager command line interface')
 parser.add_argument('api', type=str, nargs=1)
@@ -53,13 +54,12 @@ parser.add_argument('-t', '--taskId', type=str)
 parser.add_argument('-j', '--josmPath', type=str)
 
 args = parser.parse_args()
-print(args) #DEBUG_ONLY
 
 if(args.api[0] == "user"):
     
     if(args.operation[0] == "login"):
-        if(args.username == None or args.password == None):
-            print("usage: htmcli.py user login [-u USERNAME] [-p PASSWORD]")
+        if(args.username == None):# or args.password == None):
+            print("usage: htmcli.py user login [-u USERNAME]")#[-p PASSWORD]
             exit(1)
         store = None
         login_api_instance = None
@@ -72,12 +72,18 @@ if(args.api[0] == "user"):
             if(store != None):
                 store.close()
 
-        if(login_api_instance == None or int((datetime.datetime.now() - login_api_instance.timeCreated).total_seconds() / 60.) > 720):
-            login_api_instance = UserLoginAPI()
-            login_api_instance.obtain_authorization(args.username, args.password)
-        
-        store = open('authentication_info.obj', 'wb')
-        pickle.dump(login_api_instance, store)
+        try:
+            if(login_api_instance == None or int((datetime.datetime.now() - login_api_instance.timeCreated).total_seconds() / 60.) > 720 or args.username != login_api_instance.get_username()):
+                password = getpass()
+                login_api_instance = UserLoginAPI()
+                login_api_instance.obtain_authorization(args.username, password)
+                login_api_instance.set_username(args.username)
+                store = open('authentication_info.obj', 'wb')
+                pickle.dump(login_api_instance, store)
+
+            print('Success!')
+        except BaseException:
+            print("Login failed!")
     
     else:
         print("User api operations are: login")
@@ -248,7 +254,7 @@ elif(args.api[0] == "project"):
 
         reply = project_admin_api.ProjectAdminApi().api_v1_admin_project_project_id_get(login_api_instance.get_authorization(), int(args.projectId), _preload_content=False)
         reply_json = json.loads(reply.data.decode())
-        print(reply_json)
+        #print(reply_json)
 
         #print(args._get_kwargs())
 
@@ -311,7 +317,7 @@ elif(args.api[0] == "project"):
             else:
                 reply_json[arg_name] = arg_val
 
-        print(reply_json)
+        #print(reply_json)
         reply = project_admin_api.ProjectAdminApi().api_v1_admin_project_project_id_post(reply_json, login_api_instance.get_authorization(), int(args.projectId), _preload_content=False)
         print(reply.data.decode())
 
